@@ -1,0 +1,28 @@
+{
+  "name": "downloadbycurl",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "bindings": "~1.2.1",
+    "electron": "1.7.5"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CZion272/downloadbycurl.git"
+  },
+  "scripts": {
+    "install": "node-pre-gyp install --fallback-to-build",
+    "test": "node test.js"
+  },
+  "license": "MIT",
+  "gypfile": true,
+  "binary": {
+    "module_name": "downloadbycurl",
+    "module_path": "./lib",
+    "host": "https://github.com/CZion272/downloadbycurl/releases/download/",
+    "remote_path": "{version}"
+  }
+}
