@@ -22,6 +22,7 @@ DownloadTask::~DownloadTask()
         curl_free(m_pCurl);
         m_pCurl = NULL;
     }
+    napi_delete_reference(m_NapiEnv, m_NapiRef);
 }
 
 
@@ -66,7 +67,7 @@ long DownloadTask::getDownloadFileLenth(const char *url)
 
 void DownloadTask::start()
 {
-    if (!checkHasFile())
+    if (checkHasFile())
     {
         QFile file(m_strFile);
         if (m_dTotleFileSzie != file.size())

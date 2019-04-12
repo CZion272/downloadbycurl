@@ -1,0 +1,14 @@
+*.py
+*.h
+*.cpp
+*.cc
+*.gyp
+*.bat
+*.exe
+*.lib
+*.jpg
+*.csv
+test.js
+build*
+lib
+libcurl

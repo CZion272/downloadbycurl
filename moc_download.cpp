@@ -78,8 +78,6 @@ void *Download::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_Download.stringdata0))
         return static_cast<void*>(this);
-    if (!strcmp(_clname, "node::ObjectWrap"))
-        return static_cast< node::ObjectWrap*>(this);
     return QObject::qt_metacast(_clname);
 }
 

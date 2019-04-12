@@ -1,27 +1,28 @@
 #pragma once
 
-#include <node.h>
+#include <node_api.h>
 #include <QApplication>
 #include <QThread>
-#include "uv.h"
 #include "download.h"
 
-using v8::Local;
-using v8::Object;
-
-void runExec(const FunctionCallbackInfo<Value>& args)
+napi_value runExec(napi_env env, napi_callback_info info)
 {
-    Isolate* isolate = args.GetIsolate();
     int argc = 0;
-    QApplication app(argc, NULL);
-    args.GetReturnValue().Set(0);
-    app.exec();
+    QApplication *app = new QApplication(argc, NULL);
+    //app.exec();
+    return nullptr;
 }
 
-void InitAll(Local<Object> exports)
+napi_value InitAll(napi_env env, napi_value exports)
 {
-    Download::Init(exports);
-    NODE_SET_METHOD(exports, "runExec", runExec);
+    Download::Init(env, exports);
+    const int nPorperty = 1;
+    napi_status status;
+    napi_property_descriptor desc[nPorperty];
+    desc[0] = DECLARE_NAPI_METHOD("runExec", runExec);
+    status = napi_define_properties(env, exports, nPorperty, desc);
+    assert(status == napi_ok);
+    return exports;
 }
 
-NODE_MODULE(NODE_GYP_MODULE_NAME, InitAll)
+NAPI_MODULE(NODE_GYP_MODULE_NAME, InitAll)

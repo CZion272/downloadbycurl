@@ -24,7 +24,7 @@
 			"QT_GUI_LIB",
 			"QT_CORE_LIB",
 			"QT_WIDGETS_LIB"
-			],
+			],			
 	  "include_dirs": [
 		 "libcurl/include",
 		 "$(QTDIR)/include",

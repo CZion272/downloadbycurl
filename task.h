@@ -1,25 +1,8 @@
 #pragma once
 #include "curl/curl.h"
 #include <QString>
-#include <uv.h>
-#include <node.h>
+#include <node_api.h>
 #include <QObject>
-#include <node_object_wrap.h>
-
-using namespace v8;
-using v8::Context;
-using v8::Exception;
-using v8::Function;
-using v8::FunctionCallbackInfo;
-using v8::FunctionTemplate;
-using v8::Isolate;
-using v8::Local;
-using v8::Number;
-using v8::Object;
-using v8::Persistent;
-using v8::String;
-using v8::Value;
-using v8::HandleScope;
 
 class DownloadTask :public QObject
 {
@@ -49,9 +32,10 @@ signals:
     void downloadEnd(int nIndex, int errorCode);
     void started(int nIndex, double nSize);
 public:
-    uv_work_t m_request;
-    Isolate * m_pIsolate;
-    Persistent<Function> m_funCallback;
+    napi_value m_NapiCallback;
+    napi_value m_NapiGlobal;
+    napi_env m_NapiEnv;
+    napi_ref m_NapiRef;
 private:
     QString m_strUrl;
     QString m_strFile;

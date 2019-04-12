@@ -1,13 +1,10 @@
 {
   "name": "downloadbycurl",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "main.js",
   "dependencies": {
     "bindings": "~1.2.1",
-    "electron": "1.7.5"
-  },
-  "devDependencies": {
-    "electron-rebuild": "^1.8.2"
+    "node-pre-gyp": "^0.12.0"
   },
   "repository": {
     "type": "git",
@@ -20,9 +17,13 @@
   "license": "MIT",
   "gypfile": true,
   "binary": {
+    "remote_path": "./{version}/",
+    "package_name": "{platform}-{arch}-napi-v{napi_build_version}.tar.gz",
     "module_name": "downloadbycurl",
-    "module_path": "./lib",
+    "module_path": "./lib/napi-v{napi_build_version}",
     "host": "https://github.com/CZion272/downloadbycurl/releases/download/",
-    "remote_path": "{version}"
+    "napi_versions": [
+      3
+    ]
   }
 }
